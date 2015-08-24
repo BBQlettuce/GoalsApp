@@ -2,6 +2,9 @@ require 'spec_helper'
 require 'rails_helper'
 
 feature "the signup process" do
+  before :each do
+    visit('users/new')
+  end
 
   it "has a new user page" do
     visit('/users/new')
@@ -17,7 +20,6 @@ feature "the signup process" do
     it "validates proper username and password (blank input)" do
       click_button('Sign Up')
       expect(page).to have_content('Create New User')
-      expect(page).to have_content("Password can't be blank")
       expect(page).to have_content("Username can't be blank")
     end
 
