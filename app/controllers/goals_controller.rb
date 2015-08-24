@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
   before_action :require_login, except: [:index, :show]
-
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   def index
     @goals = Goal.where(goal_type: "public")
     render :index
@@ -47,7 +47,7 @@ class GoalsController < ApplicationController
 
   def destroy
     @goal = Goal.find(params[:id])
-    Goal.destroy(@goal)
+    @goal.destroy
     redirect_to goals_url
   end
 
@@ -56,4 +56,13 @@ class GoalsController < ApplicationController
   def goal_params
     params.require(:goal).permit(:title, :body, :goal_type, :is_completed)
   end
+
+  def require_same_user
+    @goal = Goal.find(params[:id])
+    if current_user.id != @goal.user_id
+      flash[:errors] = ["You do not have permission for that action"]
+      redirect_to goals_url
+    end
+  end
+
 end
