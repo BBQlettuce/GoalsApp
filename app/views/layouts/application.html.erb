@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<% if logged_in? %>
+<form action="<%= session_url %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <%= render_auth_token %>
+  <button>Logout</button>
+</form>
+<% end %>
+
 <%= render 'shared/errors' %>
 <%= yield %>
 

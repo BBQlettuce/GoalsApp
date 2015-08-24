@@ -43,15 +43,35 @@ feature "the signup process" do
 end
 
 feature "logging in" do
+  before :each do
+    sign_up("random_user", "long_password")
+  end
 
-  it "shows username on the homepage after login"
+  it "shows username on the homepage after login" do
+    visit('/session/new')
+    fill_in('Username', with: "random_user")
+    fill_in('Password', with: "long_password")
+    click_button('Login')
+    expect(page).to have_content("random_user")
+  end
+
 
 end
 
 feature "logging out" do
+  before :each do
+    visit('session/new')
+  end
 
-  it "begins with logged out state"
+  it "begins with logged out state" do
+    expect(page).to_not have_content("Logout")
+    expect(page).to have_content("Log In")
+  end
 
-  it "doesn't show username on the homepage after logout"
+  it "doesn't show username on the homepage after logout" do
+    sign_up("random_user", "long_password")
+    click_button('Logout')
+    expect(page).to_not have_content("random_user")
+  end
 
 end
