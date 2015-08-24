@@ -1,4 +1,5 @@
 class Goal < ActiveRecord::Base
+  validates :title, presence: true
   validates :body, presence: true
   validates :goal_type, inclusion: { in: ["private", "public"],
             message: "Goal must be public or private."}

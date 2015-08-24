@@ -1,0 +1,9 @@
+<h1> <%= @goal.title %> </h1>
+
+<ul>
+  <li> <%= @goal.body %> </li>
+  <li> View Permissions: <%= @goal.goal_type %> </li>
+  <li> Status: <%= @goal.is_completed ? "Completed" : "Not Completed" %></li>
+</ul>
+
+<%= link_to "Edit goal",  edit_goal_url(@goal) %>
