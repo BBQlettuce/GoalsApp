@@ -1,0 +1,30 @@
+<h1>Create New Goal</h1>
+
+
+<form action="<%= goals_url %>" method="post">
+  <%= render_auth_token %>
+  <label for="body">Goal:</label>
+  <textarea id="body" name="goal[body]"><%= @goal.body %></textarea>
+  <br>
+  <label for="goal_type_public">Public:</label>
+  <input
+    id="goal_type_public"
+    type="radio"
+    name="goal[goal_type]"
+    value="public"
+    <%= "selected" if @goal.goal_type == "public" %>>
+  <label for="goal_type_private">Private:</label>
+  <input
+    id="goal_type_private"
+    type="radio"
+    name="goal[goal_type]"
+    value="private"
+    <%= "selected" if @goal.goal_type == "private" %>>
+
+  <br>
+  <label for="completed">Completed?</label>
+  <input id="completed" type="checkbox" name="goal[is_completed]" value="true">
+
+  <br>
+  <button>Submit</button>
+</form>
