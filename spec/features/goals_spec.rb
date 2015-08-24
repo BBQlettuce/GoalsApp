@@ -42,6 +42,7 @@ feature "manipulating goals" do
 
     it "displays goal title, body, view permissions, status" do
       click_link('my_goal')
+      expect(page).to have_content("Goal set by: BBQ")
       expect(page).to have_content("my_goal")
       expect(page).to have_content("blahblahblah")
       expect(page).to have_content("public")

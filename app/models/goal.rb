@@ -6,6 +6,8 @@ class Goal < ActiveRecord::Base
   after_initialize :set_default_status
 
   belongs_to :user, inverse_of: :goals
+  has_many :comments
+  
 
   def set_default_status
     self.is_completed = false

@@ -6,10 +6,6 @@ class GoalsController < ApplicationController
     render :index
   end
 
-  # def user_index
-  #   @goals = Goal.
-  # end
-
   def new
     @goal = Goal.new
     render :new

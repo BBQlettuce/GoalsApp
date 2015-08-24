@@ -1,3 +1,18 @@
 <h1>Welcome <%= @user.username %></h1>
 
+<h2>Goals</h2>
+<ul>
+  <% @goals.each do |goal| %>
+    <li><a href="<%= goal_url(goal) %>"><%= goal.title %></a></li>
+  <% end %>
+</ul>
+
+<h2>Comments</h2>
+<ul>
+  <% @user.received_comments.each do |comment| %>
+    <li><%= comment.author.username %>: <%= comment.body %></li>
+  <% end %>
+</ul>
+<%= link_to "Post Comment", new_user_user_comment_url(@user) %>
+<br>
 <%= link_to "All Goals", goals_url %>

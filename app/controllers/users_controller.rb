@@ -17,6 +17,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if current_user == @user
+      @goals = @user.goals
+    else
+      @goals = @user.goals.where(goal_type: "public")
+    end
     render :show
   end
 

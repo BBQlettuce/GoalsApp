@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   has_many :goals, inverse_of: :user
+  # comments BY user
+  has_many :authored_comments,
+    class_name: "UserComment",
+    foreign_key: :author_id
+
+  has_many :received_comments,
+    class_name: "UserComment",
+    foreign_key: :user_id
 
   def self.generate_session_token
     token = SecureRandom.urlsafe_base64
