@@ -19,24 +19,25 @@ feature "creating comments" do
     expect(page).to have_content("this is a comment")
   end
 
-  it "creates new comment on goal" do
-    click_link('my_goal')
-    click_link('Post Comment')
-    fill_in('comment', with: "this is a comment")
-    click_button('Submit')
-    expect(page).to have_content("this is a comment")
+  # it "creates new comment on goal" do
+  #   click_link('my_goal')
+  #   click_link('Post Comment')
+  #   fill_in('comment', with: "this is a comment")
+  #   click_button('Submit')
+  #   expect(page).to have_content("this is a comment")
+  # end
+
+end
+
+# feature "showing comments" do
+#
+#
+# end
+feature "update and delete" do
+  feature "updating comment" do
+
   end
 
-end
+  feature "deleting comment" do
 
-feature "showing comments" do
-
-end
-
-feature "updating comment" do
-
-end
-
-feature "deleting comment" do
-
-end
+  end

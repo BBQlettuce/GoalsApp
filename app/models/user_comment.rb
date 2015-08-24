@@ -1,5 +1,5 @@
 class UserComment < ActiveRecord::Base
-  validates :comment, presence: true
+  validates :body, presence: true
 
   belongs_to :user
 

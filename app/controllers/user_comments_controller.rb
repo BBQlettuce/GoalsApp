@@ -16,6 +16,26 @@ class UserCommentsController < ApplicationController
     end
   end
 
+  def edit
+    @user_comment = UserComment.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @user_comment = UserComment.find(params[:id])
+    if @user_comment.update(user_comment_params)
+      redirect_to user_url(params[:user_id])
+    else
+      flash[:errors] = @user_comment.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    @user_comment = UserComment.find(params[:id])
+    @user_comment.destroy
+    redirect_to user_url(params[:user_id])
+  end
 
   private
   def user_comment_params

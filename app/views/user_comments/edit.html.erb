@@ -1,0 +1,11 @@
+<h1>Edit Comment</h1>
+<form action="<%= user_user_comment_url(@user_comment.user_id, @user_comment.id) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= render_auth_token %>
+  <label for="body">Enter Comment</label>
+  <textarea id="body" name="user_comment[body]"><%= @user_comment.body %>
+  </textarea>
+
+  <br>
+  <button>Submit</button>
+</form>
