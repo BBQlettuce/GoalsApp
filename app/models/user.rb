@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   attr_reader :password
 
+  has_many :goals, inverse_of: :user
+
   def self.generate_session_token
     token = SecureRandom.urlsafe_base64
     until User.find_by(session_token: token).nil?
